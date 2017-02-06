@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<head/><log>
+<record>
+  <date>2016-11-30T16:23:41.826-0300</date>
+  <logger>VICTOR EDUARDO BORGES DE ARAUJO</logger>
+  <level>FINE</level>
+  <message>File 115210597-VICTOR EDUARDO BORGES DE ARAUJO.zip was received. It was sent by VICTOR EDUARDO BORGES DE ARAUJO from IP 192.168.56.1</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2016-11-30T18:10:39.274-0300</date>
+  <logger>VICTOR EDUARDO BORGES DE ARAUJO</logger>
+  <level>FINE</level>
+  <message>File 115210597-VICTOR EDUARDO BORGES DE ARAUJO.zip was received. It was sent by VICTOR EDUARDO BORGES DE ARAUJO from IP 192.168.56.1</message>
+</record>
