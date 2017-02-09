@@ -196,13 +196,14 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		return array;
 	}
 
-	private void preOrder(T[] array, int index, BSTNode<T> node) {
+	private int preOrder(T[] array, int index, BSTNode<T> node) {
 		if(!node.isEmpty()) {
 			array[index] = (T) node.getData();
 			index++;
-			preOrder(array, index, (BSTNode<T>) node.getLeft());
-			preOrder(array, index, (BSTNode<T>) node.getRight());
+			index = preOrder(array, index, (BSTNode<T>) node.getLeft());
+			index = preOrder(array, index, (BSTNode<T>) node.getRight());
 		}
+		return index;
 	}
 
 	@Override
@@ -212,14 +213,14 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		return array;
 	}
 
-	private void order(T[] array, int index, BSTNode<T> node) {
+	private int order(T[] array, int index, BSTNode<T> node) {
 		if(!node.isEmpty()) {
-			order(array, index, (BSTNode<T>) node.getLeft());
+			index = order(array, index, (BSTNode<T>) node.getLeft());
 			array[index] = (T) node.getData();
 			index++;
-			order(array, index, (BSTNode<T>) node.getRight());
+			index = order(array, index, (BSTNode<T>) node.getRight());
 		}
-		
+		return index;		
 	}
 
 	@Override
@@ -229,13 +230,14 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		return array;
 	}
 
-	private void postOrder(T[] array, int index, BSTNode<T> node) {
+	private int postOrder(T[] array, int index, BSTNode<T> node) {
 		if(!node.isEmpty()) {
-			postOrder(array, index, (BSTNode<T>) node.getLeft());
+			index = postOrder(array, index, (BSTNode<T>) node.getLeft());
+			index = postOrder(array, index, (BSTNode<T>) node.getRight());
 			array[index] = (T) node.getData();
 			index++;
-			postOrder(array, index, (BSTNode<T>) node.getRight());
-		}		
+		}
+		return index;
 	}
 
 	/**
