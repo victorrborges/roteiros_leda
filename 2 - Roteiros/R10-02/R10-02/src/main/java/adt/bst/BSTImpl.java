@@ -172,6 +172,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			return;
 		} else if(node.getParent() == null){
 			removeRoot(node);
+			return;
 		} else if (node.isLeaf()) {
 			removeLeaf(node);
 			return;
@@ -189,12 +190,14 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			node.setData(null);
 		}
 		if (!node.getLeft().isEmpty() && node.getRight().isEmpty()) {
-			node.getLeft().setParent(null);
 			this.root = (BSTNode<T>) node.getLeft();
+			this.root.setParent(null);
+			node = null;
 			return;
 		} else if (node.getLeft().isEmpty() && !node.getRight().isEmpty()) {
-			node.getRight().setParent(null);
 			this.root = (BSTNode<T>) node.getRight();
+			this.root.setParent(null);
+			node = null;
 			return;
 		} else {
 			node.setData(null);
@@ -207,12 +210,20 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	
 	private void removeOneDegree(BSTNode<T> node) {
 		if (!node.getLeft().isEmpty() && node.getRight().isEmpty()) {
-			node.getParent().setRight(node.getRight());
-			node.getRight().setParent(node.getParent());
+			node.getLeft().setParent(node.getParent());
+			if(node.getParent().getLeft().equals(node)) {
+				node.getParent().setLeft(node.getLeft());
+			} else {
+				node.getParent().setRight(node.getLeft());
+			}
 			return;
 		} else if (node.getLeft().isEmpty() && !node.getRight().isEmpty()) {
-			node.getParent().setLeft(node.getLeft());
-			node.getLeft().setParent(node.getParent());
+			node.getRight().setParent(node.getParent());
+			if(node.getParent().getLeft().equals(node)) {
+				node.getParent().setLeft(node.getRight());
+			} else {
+				node.getParent().setRight(node.getRight());
+			}
 			return;
 		}
 	}
