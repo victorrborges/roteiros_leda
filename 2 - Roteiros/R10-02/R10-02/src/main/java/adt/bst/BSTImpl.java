@@ -55,28 +55,39 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		if (element == null) {
 			return;
 		}
-		insert(this.getRoot(), element, new BSTNode<T>());
+		if (isEmpty()) {
+			this.root.setLeft(new BSTNode<T>());
+			this.root.setRight(new BSTNode<T>());
+			this.root.getLeft().setParent(this.root);
+			this.root.getRight().setParent(this.root);
+			this.root.setData(element);
+		}
+
+		insert(this.getRoot(), element);
 	}
-	
-	private void insert(BSTNode<T> node, T element, BSTNode<T> parent) {
-		if(node.isEmpty()) {
+
+	private void insert(BSTNode<T> node, T element) {
+
+		if (node.isEmpty()) {
 			node.setData(element);
 			node.setLeft(new BSTNode<T>());
 			node.setRight(new BSTNode<T>());
-			node.setParent(parent);
+			node.getLeft().setParent(node);
+			node.getRight().setParent(node);
+			return;
 		}
 		if (element.compareTo(node.getData()) < 0) {
-			insert((BSTNode<T>) node.getLeft(), element, node);
+			insert((BSTNode<T>) node.getLeft(), element);
 		} else if (element.compareTo(node.getData()) > 0) {
-			insert((BSTNode<T>) node.getRight(), element, node);
+			insert((BSTNode<T>) node.getRight(), element);
 		}
-		
+
 	}
 
 	@Override
 	public BSTNode<T> maximum() {
 		return maximum(this.getRoot());
-	
+
 	}
 
 	private BSTNode<T> maximum(BSTNode<T> node) {
@@ -111,20 +122,20 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		}
 		BSTNode<T> node = this.search(element);
 		BSTNode<T> parent = (BSTNode<T>) node.getParent();
-		
+
 		if (node.isEmpty()) {
 			return null;
 		} else {
 			if (!node.getRight().isEmpty()) {
 				return minimum((BSTNode<T>) node.getRight());
-			} else if (node.equals(node.getParent().getLeft())){
+			} else if (node.equals(node.getParent().getLeft())) {
 				return parent;
 			} else {
-				while(!parent.isEmpty() && node == parent.getRight()) {
+				while (!parent.isEmpty() && node == parent.getRight()) {
 					node = parent;
 					parent = (BSTNode<T>) parent.getParent();
 				}
-				if(!parent.isEmpty()) {
+				if (!parent.isEmpty()) {
 					return parent;
 				} else {
 					return null;
@@ -140,20 +151,20 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		}
 		BSTNode<T> node = this.search(element);
 		BSTNode<T> parent = (BSTNode<T>) node.getParent();
-		
+
 		if (node.isEmpty()) {
 			return null;
 		} else {
 			if (!node.getLeft().isEmpty()) {
-				return maximum((BSTNode<T>) node.getLeft());				
-			} else if (node.getData().compareTo(node.getParent().getData()) > 0){
+				return maximum((BSTNode<T>) node.getLeft());
+			} else if (node.getData().compareTo(node.getParent().getData()) > 0) {
 				return parent;
 			} else {
-				while(!parent.isEmpty() && node == parent.getLeft()) {
+				while (parent != null && node == parent.getLeft()) {
 					node = parent;
 					parent = (BSTNode<T>) parent.getParent();
 				}
-				if(!parent.isEmpty()) {
+				if (parent != null) {
 					return parent;
 				} else {
 					return null;
@@ -170,13 +181,13 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		BSTNode<T> node = this.search(element);
 		if (node.isEmpty()) {
 			return;
-		} else if(node.getParent() == null){
+		} else if (node.getParent() == null) {
 			removeRoot(node);
 			return;
 		} else if (node.isLeaf()) {
 			removeLeaf(node);
 			return;
-		} else if (!node.getLeft().isEmpty() && !node.getRight().isEmpty()){
+		} else if (!node.getLeft().isEmpty() && !node.getRight().isEmpty()) {
 			removeTwoDegree(node);
 			return;
 		} else {
@@ -184,12 +195,11 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			return;
 		}
 	}
-	
+
 	private void removeRoot(BSTNode<T> node) {
 		if (node.getLeft().isEmpty() && node.getRight().isEmpty()) {
 			node.setData(null);
-		}
-		if (!node.getLeft().isEmpty() && node.getRight().isEmpty()) {
+		} else if (!node.getLeft().isEmpty() && node.getRight().isEmpty()) {
 			this.root = (BSTNode<T>) node.getLeft();
 			this.root.setParent(null);
 			node = null;
@@ -200,18 +210,19 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			node = null;
 			return;
 		} else {
-			node.setData(null);
+			removeTwoDegree(node);
+			return;
 		}
 	}
 
 	private void removeLeaf(BSTNode<T> node) {
 		node.setData(null);
 	}
-	
+
 	private void removeOneDegree(BSTNode<T> node) {
 		if (!node.getLeft().isEmpty() && node.getRight().isEmpty()) {
 			node.getLeft().setParent(node.getParent());
-			if(node.getParent().getLeft().equals(node)) {
+			if (node.getParent().getLeft().equals(node)) {
 				node.getParent().setLeft(node.getLeft());
 			} else {
 				node.getParent().setRight(node.getLeft());
@@ -219,7 +230,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			return;
 		} else if (node.getLeft().isEmpty() && !node.getRight().isEmpty()) {
 			node.getRight().setParent(node.getParent());
-			if(node.getParent().getLeft().equals(node)) {
+			if (node.getParent().getLeft().equals(node)) {
 				node.getParent().setLeft(node.getRight());
 			} else {
 				node.getParent().setRight(node.getRight());
@@ -227,13 +238,12 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			return;
 		}
 	}
-	
+
 	private void removeTwoDegree(BSTNode<T> node) {
 		BSTNode<T> sucessor = sucessor(node.getData());
-		T data = node.getData();
-		node.setData(sucessor.getData());
-		sucessor.setData(data);
+		T data = sucessor.getData();
 		remove(sucessor.getData());
+		node.setData(data);
 	}
 
 	@Override
@@ -245,7 +255,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 	private int preOrder(T[] array, int index, BSTNode<T> node) {
-		if(!node.isEmpty()) {
+		if (!node.isEmpty()) {
 			array[index] = (T) node.getData();
 			index++;
 			index = preOrder(array, index, (BSTNode<T>) node.getLeft());
@@ -263,13 +273,13 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 	private int order(T[] array, int index, BSTNode<T> node) {
-		if(!node.isEmpty()) {
+		if (!node.isEmpty()) {
 			index = order(array, index, (BSTNode<T>) node.getLeft());
 			array[index] = (T) node.getData();
 			index++;
 			index = order(array, index, (BSTNode<T>) node.getRight());
 		}
-		return index;		
+		return index;
 	}
 
 	@Override
@@ -281,7 +291,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 	private int postOrder(T[] array, int index, BSTNode<T> node) {
-		if(!node.isEmpty()) {
+		if (!node.isEmpty()) {
 			index = postOrder(array, index, (BSTNode<T>) node.getLeft());
 			index = postOrder(array, index, (BSTNode<T>) node.getRight());
 			array[index] = (T) node.getData();
@@ -303,8 +313,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		int result = 0;
 		// base case means doing nothing (return 0)
 		if (!node.isEmpty()) { // indusctive case
-			result = 1 + size((BSTNode<T>) node.getLeft())
-					+ size((BSTNode<T>) node.getRight());
+			result = 1 + size((BSTNode<T>) node.getLeft()) + size((BSTNode<T>) node.getRight());
 		}
 		return result;
 	}
