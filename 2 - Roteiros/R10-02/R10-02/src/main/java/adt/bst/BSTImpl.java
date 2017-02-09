@@ -116,6 +116,8 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		} else {
 			if (!node.getRight().isEmpty()) {
 				return (BSTNode<T>) node.getRight();
+			} else if (node.getData().compareTo(node.getParent().getData()) < 0){
+				return (BSTNode<T>) node.getParent();
 			} else {
 				return null;
 			}
@@ -134,6 +136,8 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		} else {
 			if (!node.getLeft().isEmpty()) {
 				return (BSTNode<T>) node.getLeft();				
+			} else if (node.getData().compareTo(node.getParent().getData()) > 0){
+				return (BSTNode<T>) node.getParent();
 			} else {
 				return null;
 			}
