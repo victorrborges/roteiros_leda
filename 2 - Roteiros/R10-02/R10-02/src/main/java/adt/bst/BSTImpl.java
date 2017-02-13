@@ -123,7 +123,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		BSTNode<T> node = this.search(element);
 		BSTNode<T> parent = (BSTNode<T>) node.getParent();
 
-		if (node.isEmpty()) {
+		if (node == null || node.isEmpty()) {
 			return null;
 		} else {
 			if (!node.getRight().isEmpty()) {
@@ -131,11 +131,11 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			} else if (node.equals(node.getParent().getLeft())) {
 				return parent;
 			} else {
-				while (!parent.isEmpty() && node == parent.getRight()) {
+				while (parent != null && !parent.isEmpty() && node == parent.getRight()) {
 					node = parent;
 					parent = (BSTNode<T>) parent.getParent();
 				}
-				if (!parent.isEmpty()) {
+				if (parent != null && !parent.isEmpty()) {
 					return parent;
 				} else {
 					return null;
@@ -152,7 +152,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		BSTNode<T> node = this.search(element);
 		BSTNode<T> parent = (BSTNode<T>) node.getParent();
 
-		if (node.isEmpty()) {
+		if (node == null || node.isEmpty()) {
 			return null;
 		} else {
 			if (!node.getLeft().isEmpty()) {
@@ -160,11 +160,11 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			} else if (node.getData().compareTo(node.getParent().getData()) > 0) {
 				return parent;
 			} else {
-				while (parent != null && node == parent.getLeft()) {
+				while (parent != null && parent != null && node == parent.getLeft()) {
 					node = parent;
 					parent = (BSTNode<T>) parent.getParent();
 				}
-				if (parent != null) {
+				if (parent != null && !parent.isEmpty()) {
 					return parent;
 				} else {
 					return null;
