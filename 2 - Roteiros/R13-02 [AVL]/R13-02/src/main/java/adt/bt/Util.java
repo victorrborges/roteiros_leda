@@ -15,10 +15,12 @@ public class Util {
 		BTNode<T> parent = node.getParent();
 		BTNode<T> right = node.getRight();
 
-		if (node.equals(parent.getLeft())) {
-			parent.setLeft(right);
-		} else {
-			parent.setRight(right);
+		if (parent != null) {			
+			if (node.equals(parent.getLeft())) {
+				parent.setLeft(right);
+			} else {
+				parent.setRight(right);
+			}
 		}
 
 		right.setParent(parent);
@@ -40,10 +42,12 @@ public class Util {
 		BTNode<T> parent = node.getParent();
 		BTNode<T> left = node.getLeft();
 
-		if (node.equals(parent.getLeft())) {
-			parent.setLeft(left);
-		} else {
-			parent.setRight(left);
+		if (parent != null) {
+			if (node.equals(parent.getLeft())) {
+				parent.setLeft(left);
+			} else {
+				parent.setRight(left);
+			}
 		}
 
 		left.setParent(parent);

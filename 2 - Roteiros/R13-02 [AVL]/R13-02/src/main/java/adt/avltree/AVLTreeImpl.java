@@ -24,109 +24,45 @@ public class AVLTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements 
 			rebalanceUp((BSTNode<T>) node.getParent());
 		}
 	}
+	
+	public void remove(T element){
+  		BSTNode<T> node = search(element);
+  		super.remove(element);
+  		rebalanceUp((BSTNode<T>) node.getParent());
+  	}
 
 	// AUXILIARY
 	protected int calculateBalance(BSTNode<T> node) {
-		return height((BSTNode<T>) node.getLeft()) - height((BSTNode<T>) node.getRight());
-	}
-
-	private int height(BSTNode<T> node) {
-		if (node == null || node.isEmpty()) {
-			return -1;
-		} else {
-			return 1 + Math.max(this.height((BSTNode<T>) node.getLeft()), this.height((BSTNode<T>) node.getRight()));
+		if (node.isEmpty()) {
+			return 0;
 		}
+		return super.height((BSTNode<T>) node.getLeft()) - super.height((BSTNode<T>) node.getRight());
 	}
 
 	// AUXILIARY
 	protected void rebalance(BSTNode<T> node) {
-		if (node == null) {
-			return;
-		}
-		int balance = calculateBalance(node);
-
-		BSTNode<T> left = (BSTNode<T>) node.getLeft();
-		BSTNode<T> right = (BSTNode<T>) node.getRight();
-
-		if (Math.abs(balance) <= 1)
-			return;
-
-		if (balance < 0) {
-			if (calculateBalance(right) <= 0) {
-				Util.leftRotation(node);
-			} else {
-				Util.rightRotation(right);
-				Util.leftRotation(node);
-			}
-		} else {
-			if (calculateBalance(left) >= 0) {
-				Util.rightRotation(node);
-			} else {
-				Util.leftRotation(left);
-				Util.rightRotation(node);
-			}
-		}
-	}
+  		int balance = calculateBalance(node);
+  		
+  		if (balance < -1) {
+  			if (calculateBalance((BSTNode<T>) node.getLeft()) > 0) {
+  				Util.leftRotation((BSTNode<T>) node.getLeft());
+  			}
+  			Util.rightRotation(node);
+  		} else if (balance > 1) {
+  			if (calculateBalance((BSTNode<T>) node.getRight()) < 0) {
+  				Util.rightRotation((BSTNode<T>) node.getRight());
+  			}
+  			Util.leftRotation(node);
+  		}
+  	}
 
 	// AUXILIARY
 	protected void rebalanceUp(BSTNode<T> node) {
 		if (node != null && !node.isEmpty()) {
-			rebalance(node);
+			if (calculateBalance(node) < -1 || calculateBalance(node) > 1) {
+				rebalance(node);
+			}
 			rebalanceUp((BSTNode<T>) node.getParent());
 		}
-	}
-
-	@Override
-	public T[] preOrder() {
-		@SuppressWarnings("unchecked")
-		T[] array = (T[]) new Comparable[this.size()];
-		preOrder(array, 0, this.getRoot());
-		return array;
-	}
-
-	private int preOrder(T[] array, int index, BSTNode<T> node) {
-		if (!node.isEmpty()) {
-			array[index] = (T) node.getData();
-			index++;
-			index = preOrder(array, index, (BSTNode<T>) node.getLeft());
-			index = preOrder(array, index, (BSTNode<T>) node.getRight());
-		}
-		return index;
-	}
-
-	@Override
-	public T[] order() {
-		@SuppressWarnings("unchecked")
-		T[] array = (T[]) new Comparable[this.size()];
-		order(array, 0, this.getRoot());
-		return array;
-	}
-
-	private int order(T[] array, int index, BSTNode<T> node) {
-		if (!node.isEmpty()) {
-			index = order(array, index, (BSTNode<T>) node.getLeft());
-			array[index] = (T) node.getData();
-			index++;
-			index = order(array, index, (BSTNode<T>) node.getRight());
-		}
-		return index;
-	}
-
-	@Override
-	public T[] postOrder() {
-		@SuppressWarnings("unchecked")
-		T[] array = (T[]) new Comparable[this.size()];
-		postOrder(array, 0, this.getRoot());
-		return array;
-	}
-
-	private int postOrder(T[] array, int index, BSTNode<T> node) {
-		if (!node.isEmpty()) {
-			index = postOrder(array, index, (BSTNode<T>) node.getLeft());
-			index = postOrder(array, index, (BSTNode<T>) node.getRight());
-			array[index] = (T) node.getData();
-			index++;
-		}
-		return index;
 	}
 }
