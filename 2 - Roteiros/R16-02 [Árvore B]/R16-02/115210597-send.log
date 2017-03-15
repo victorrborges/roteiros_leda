@@ -7,3 +7,13 @@
   <level>FINE</level>
   <message>File 115210597-VICTOR EDUARDO BORGES DE ARAUJO.zip was received. It was sent by VICTOR EDUARDO BORGES DE ARAUJO from IP 192.168.56.1</message>
 </record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2017-03-15T19:57:02.822-0300</date>
+  <logger>VICTOR EDUARDO BORGES DE ARAUJO</logger>
+  <level>FINE</level>
+  <message>File 115210597-VICTOR EDUARDO BORGES DE ARAUJO.zip was received. It was sent by VICTOR EDUARDO BORGES DE ARAUJO from IP 192.168.56.1</message>
+</record>
