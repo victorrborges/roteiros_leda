@@ -1,0 +1,5 @@
+Testes: 00.0/04.0
+Design:	08.0/10.0
+Final: 	04.8/10.0
+
+Comentário: O aluno compreendeu os conceitos necessários para realização do roteiro, sobrescreveu corretamente o insert() da BST, aproveitando o comportamento já implementado. O método rebalance() poderia ser otimizado, observe que quando o balanço do nó é maior que 1, o rightRotation() é chamado obrigatoriamente, e quando é menor que -1, o leftRotation() é chamado obrigatoriamente. O método rebalanceUp() também poderia ser otimizado, pois o rebalance() é chamado para qualquer nó, este precisando ser balanceado ou não. O defeito no código do aluno está no rebalance(), pois a condição para realizar uma rotação no filho, é de que este esteja pendendo para esquerda ou direita, porém o aluno verifica se o balanço é igual a zero também, o que provoca rotações em nós balanceados, comprometendo toda a estrutura da árvore, fazendo com que o código quebre em todos os testes.

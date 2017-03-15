@@ -1,0 +1,5 @@
+Testes: 03.6/04.0
+Design:	06.0/10.0
+Final: 	07.2/10.0
+
+Comentário: 1 - Erros de NullPointer no método predecessor. 2 - Erro de NullPointer em um dos casos de teste do método sucessor.

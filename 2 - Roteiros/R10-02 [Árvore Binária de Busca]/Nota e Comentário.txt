@@ -1,0 +1,5 @@
+Testes: 03.3/04.0
+Design:	09.5/10.0
+Final: 	09.0/10.0
+
+Comentário: A condição de retornar o pai do nó caso ele seja o filho a esquerda não existe no sucessor e predecessor (nesse caso filho a direita).

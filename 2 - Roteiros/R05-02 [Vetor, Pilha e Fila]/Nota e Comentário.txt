@@ -1,0 +1,5 @@
+Testes: 03.7/04.0
+Design:	08.0/10.0
+Final: 	08.5/10.0
+
+Comentário: Erro no método head() da fila, faltou tratar o caso em que a fila está vazia. Erro no método dequeue() da fila, faltou decrementar o tail após o shift.

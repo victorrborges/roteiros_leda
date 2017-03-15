@@ -1,0 +1,5 @@
+Testes: 03.2/04.0
+Design:	09.6/10.0
+Final: 	09.0/10.0
+
+Comentário: Código implementado com bastante coerência, faltou apenas cuidado com algumas situações extremas. Por exemplo, falhou nos testes para array invertido (ordenado de forma decrescente). Método particiona faz bem mais swaps do que o necessário.

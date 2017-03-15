@@ -1,0 +1,5 @@
+Testes: 03.4/04.0
+Design:	08.0/10.0
+Final: 	08.2/10.0
+
+Comentário: Remove não foi implementado corretamente, deveria ter checado se o node encontrado no search não era vazio e então fazer o remove.
