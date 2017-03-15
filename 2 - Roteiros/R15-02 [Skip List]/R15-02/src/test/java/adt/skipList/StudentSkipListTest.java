@@ -30,7 +30,7 @@ public class StudentSkipListTest {
 		skip.insert(0, "C", 1);
 		skip.insert(15, "D", 3);
 		skip.insert(5, "E", 3);
-
+		
 		assertEquals(5, skip.size());
 
 		array = skip.toArray();
