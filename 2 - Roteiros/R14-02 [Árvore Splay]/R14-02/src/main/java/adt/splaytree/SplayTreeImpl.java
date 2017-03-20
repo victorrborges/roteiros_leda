@@ -31,10 +31,10 @@ public class SplayTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implement
 	public void remove(T element) {
 		if (element != null) {
 			BSTNode<T> node = super.search(element);
+			BSTNode<T> parent = (BSTNode<T>) node.getParent();
+			splay(parent);
 			if (!node.isEmpty()) {
-				BSTNode<T> parent = (BSTNode<T>) node.getParent();
 				super.remove(element);
-				splay(parent);
 			}
 		}
 	}

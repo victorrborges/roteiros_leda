@@ -81,13 +81,23 @@ public class SkipListImpl<T> implements SkipList<T> {
 
 	@Override
 	public int height() {
-		for (int i = this.maxHeight - 1; i > 0; i--) {
-			// Quando achar um no que nao seja o sentinela, retorna i
-			if (this.root.getForward(i).getValue() != NIL.getValue()) {
-				return i;
+//		for (int i = this.maxHeight - 1; i > 0; i--) {
+//			// Quando achar um no que nao seja o sentinela, retorna i
+//			if (this.root.getForward(i).getValue() != NIL.getValue()) {
+//				return i;
+//			}
+//		}
+//		return 0;
+		
+		SkipListNode<T> node = this.root;
+		int height = 0;
+		while (!node.getForward(0).equals(NIL)) {
+			if (node.getForward(0).height() > height) {
+				height = node.getForward(0).height();
 			}
+			node = node.getForward(0);
 		}
-		return 0;
+		return height;
 	}
 
 	@Override
