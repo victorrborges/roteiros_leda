@@ -91,7 +91,11 @@ public class RBTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements R
 		if (root != null) {
 			int leftBlackHeight = blackHeight((RBNode<T>) root.getLeft());
 			int rightBlackHeight = blackHeight((RBNode<T>) root.getRight());
-			return rightBlackHeight == leftBlackHeight;
+			if (rightBlackHeight == leftBlackHeight) {
+				return true;
+			} else {
+				throw new RuntimeException("Black Heights are different");
+			}
 		}
 
 		return true;
