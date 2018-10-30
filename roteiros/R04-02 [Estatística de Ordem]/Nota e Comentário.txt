@@ -1,5 +1,0 @@
-Testes: 03.6/04.0
-Design:	09.5/10.0
-Final: 	09.3/10.0
-
-Comentário: Comentário explicou o 'RunTimeException' 'quickSort' identifica melhor o método de ordenação que 'quick' Boa separação do código em métodos Boa escolha de nomes de variáveis

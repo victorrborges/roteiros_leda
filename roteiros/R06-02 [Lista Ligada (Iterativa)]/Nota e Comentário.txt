@@ -1,5 +1,0 @@
-Testes: 03.1/04.0
-Design:	08.0/10.0
-Final: 	07.9/10.0
-
-Comentário: C?digo leg?vel. Faltou controle sobre os nodes nos m?todos de remo??o e inser??o, ex: no removeFirst() e insertFirst() setar 'last' e 'previous'.

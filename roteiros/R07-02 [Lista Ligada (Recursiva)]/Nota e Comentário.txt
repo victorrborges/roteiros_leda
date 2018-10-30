@@ -1,5 +1,0 @@
-Testes: 03.2/04.0
-Design:	08.0/10.0
-Final: 	08.0/10.0
-
-Comentário: 1. Não sobrescreveu o insert. 2. Não havia necessidade implementar o método getLast() para pegar o elemento que seria retornado se tivesse usado o primeiro elemento da lista como o topo da pilha, em conjunto com o insertFirst() e removeFirst().

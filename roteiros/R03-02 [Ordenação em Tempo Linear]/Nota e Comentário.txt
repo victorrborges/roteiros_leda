@@ -1,5 +1,0 @@
-Testes: 02.3/04.0
-Design:	06.0/10.0
-Final: 	05.9/10.0
-
-Comentário: 1)O array original não é ordenado por completo, e algumas partes do código isto não foi levado em consideração, como por exemplo quando é colocado cada elemento no seu respectivo local, feito de trás para frente. 2)Código de fácil leitura.

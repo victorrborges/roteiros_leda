@@ -1,5 +1,0 @@
-Testes: 02.7/04.0
-Design:	09.5/10.0
-Final: 	08.4/10.0
-
-Comentário: 1. A inserção do elemento na tabela e a incrementação da quantidade de elementos só deveria ser feita caso tal elemento não existisse na tabela. 2. No remove o 'index' do elemento deveria ser hashFunction.hash(element), e não usar o método indexOf(element). 3. Gostei do método search(element), essa é a maneira mais 'enxuta' de se fazer.

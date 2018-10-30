@@ -1,5 +1,0 @@
-Testes: 04.0/04.0
-Design:	09.5/10.0
-Final: 	09.7/10.0
-
-Comentário: *Passou em todos os testes *Código bem implementado
