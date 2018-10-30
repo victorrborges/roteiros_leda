@@ -1,5 +1,0 @@
-Testes: 02.0/04.0
-Design:	05.0/10.0
-Final: 	05.0/10.0
-
-Comentário: Não deveria fazer conversões para array (o objetivo da prova era avaliar sua habilidade em manipular LISTAS). Não precisava usar remove(), pois fica mais custoso e a 1a ocorrência da duplicata é removida (deveria ser mantida). Bastava manipular os apontadores dos elementos anterior/posterior para fazer a remoção. Union e concatenate não remove as duplicatas. Concatenate não deveria usar insert (deveria ser mais eficiente do que union). bastava ligar o último de uma lista ao primeiro da outra e remover as duplicatas antes de retornar.
