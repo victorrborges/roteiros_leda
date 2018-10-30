@@ -1,5 +1,0 @@
-Testes: 03.1/04.0
-Design:	06.0/10.0
-Final: 	06.7/10.0
-
-Comentário: Código de fácil leitura. Não considerou casos excepcionais (como por exemplo array null, leftIndex < 0, leftIndex > rightIndex ou rightIndex > array.length). Possui erros de indexação em todos os algoritmos. Deveriam considerar apenas o subarray entre leftIndex e rightIndex. O Bubblesort poderia ser um pouco mais eficiente caso não retornasse aos elementos já ordenados. Poderia economizar algumas operações no InsertionSort fazendo shift ao invés de vários swaps. Implementou um Simultaneous Recursive BubbleSort no lugar do Simultaneous Recursive SelectionSort.

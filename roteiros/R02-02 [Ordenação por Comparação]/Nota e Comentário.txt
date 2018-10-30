@@ -1,5 +1,0 @@
-Testes: 03.3/04.0
-Design:	09.3/10.0
-Final: 	08.9/10.0
-
-Comentário: (1) Não considerou casos excepcionais (como por exemplo array null, leftIndex < 0, leftIndex > rightIndex ou rightIndex > array.length). (2) Pequenos problemas de indexação no mergeSort e no quickSort, causando ArrayOutOfBoundsException. (3) Contadores manipulados de forma errada, pois foram incrementados mais do que deveriam e não foram resetados.
